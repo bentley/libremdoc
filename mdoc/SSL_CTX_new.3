@@ -1,0 +1,100 @@
+.Dd July 18, 2014
+.Dt SSL_CTX_NEW 3
+.Os
+.Sh NAME
+.Nm SSL_CTX_new
+.Nd create a new SSL_CTX object as framework for TLS/SSL enabled functions
+.Sh SYNOPSIS
+.In openssl/ssl.h
+.Ft SSL_CTX *
+.Fn SSL_CTX_new "const SSL_METHOD *method"
+.Sh DESCRIPTION
+.Fn SSL_CTX_new
+creates a new
+.Vt SSL_CTX
+object as framework to establish TLS/SSL enabled connections.
+.Sh NOTES
+The
+.Vt SSL_CTX
+object uses
+.Fa method
+as its connection method.
+The methods exist in a generic type (for client and server use),
+a server only type, and a client only type.
+.Fa method
+can be of the following types:
+.Bl -tag -width Ds
+.It Fn SSLv2_method void , Fn SSLv2_server_method void , \
+Fn SSLv2_client_method void
+A TLS/SSL connection established with these methods will only understand
+the SSLv2 protocol.
+A client will send out SSLv2 client hello messages and will also indicate that
+it only understand SSLv2.
+A server will only understand SSLv2 client hello messages.
+.It Fn SSLv3_method void , Fn SSLv3_server_method void , \
+Fn SSLv3_client_method void
+A TLS/SSL connection established with these methods will only understand the
+SSLv3 protocol.
+A client will send out SSLv3 client hello messages and will indicate that it
+only understands SSLv3.
+A server will only understand SSLv3 client hello messages.
+Importantly, this means that it will not understand SSLv2 client hello messages
+which are widely used for compatibility reasons; see
+.Fn SSLv23_*_method .
+.It Fn TLSv1_method void , Fn TLSv1_server_method void , \
+Fn TLSv1_client_method void
+A TLS/SSL connection established with these methods will only understand the
+TLSv1 protocol.
+A client will send out TLSv1 client hello messages and will indicate that it
+only understands TLSv1.
+A server will only understand TLSv1 client hello messages.
+Importantly, this means that it will not understand SSLv2 client hello messages
+which are widely used for compatibility reasons; see
+.Fn SSLv23_*_method .
+It will also not understand SSLv3 client hello messages.
+.It Fn SSLv23_method void , Fn SSLv23_server_method void , \
+Fn SSLv23_client_method void
+A TLS/SSL connection established with these methods will understand the SSLv2,
+SSLv3, and TLSv1 protocols.
+A client will send out SSLv2 client hello messages and will indicate that it
+also understands SSLv3 and TLSv1.
+A server will understand SSLv2, SSLv3, and TLSv1 client hello messages.
+This is the best choice when compatibility is a concern.
+.El
+.Pp
+The list of protocols available can later be limited using the
+.Dv SSL_OP_NO_SSLv2 ,
+.Dv SSL_OP_NO_SSLv3 ,
+or
+.Dv SSL_OP_NO_TLSv1
+options of the
+.Fn SSL_CTX_set_options
+or
+.Fn SSL_set_options
+functions.
+Using these options it is possible to choose, for example,
+.Fn SSLv23_server_method
+and be able to negotiate with all possible clients,
+but to only allow newer protocols like SSLv3 or TLSv1.
+.Pp
+.Fn SSL_CTX_new
+initializes the list of ciphers, the session cache setting, the callbacks,
+the keys and certificates, and the options to its default values.
+.Sh RETURN VALUES
+The following return values can occur:
+.Bl -tag -width Ds
+.It Dv NULL
+The creation of a new
+.Vt SSL_CTX
+object failed.
+Check the error stack to find out the reason.
+.It Pointer to an SSL_CTX object
+The return value points to an allocated
+.Vt SSL_CTX
+object.
+.El
+.Sh SEE ALSO
+.Xr ssl 3 ,
+.Xr SSL_accept 3 ,
+.Xr SSL_set_connect_state 3 ,
+.Xr SSL_CTX_free 3
