@@ -20,6 +20,17 @@ these certificates explicitly specified.
 If no chain is specified, the library will try to complete the chain from the
 available CA certificates in the trusted CA storage, see
 .Xr SSL_CTX_load_verify_locations 3 .
+.Pp
+The x509 certificate provided to
+.Fn SSL_CTX_add_extra_chain_cert
+will be freed by the library when the
+.Vt SSL_CTX
+is destroyed.
+An application
+.Em should not
+free the
+.Fa x509
+object.
 .Sh RETURN VALUES
 .Fn SSL_CTX_add_extra_chain_cert
 returns 1 on success.

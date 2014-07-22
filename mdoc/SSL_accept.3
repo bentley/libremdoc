@@ -75,9 +75,6 @@ before being able to continue.
 .Sh RETURN VALUES
 The following return values can occur:
 .Bl -tag -width Ds
-.It 1
-The TLS/SSL handshake was successfully completed,
-and a TLS/SSL connection has been established.
 .It 0
 The TLS/SSL handshake was not successful but was shut down controlled and by
 the specifications of the TLS/SSL protocol.
@@ -86,6 +83,9 @@ Call
 with the return value
 .Fa ret
 to find out the reason.
+.It 1
+The TLS/SSL handshake was successfully completed,
+and a TLS/SSL connection has been established.
 .It <0
 The TLS/SSL handshake was not successful because a fatal error occurred either
 at the protocol level or a connection failure occurred.

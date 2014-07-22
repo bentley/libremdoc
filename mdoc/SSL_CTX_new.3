@@ -2,7 +2,19 @@
 .Dt SSL_CTX_NEW 3
 .Os
 .Sh NAME
-.Nm SSL_CTX_new
+.Nm SSL_CTX_new ,
+.Nm SSLv3_method ,
+.Nm SSLv3_server_method ,
+.Nm SSLv3_client_method ,
+.Nm TLSv1_method ,
+.Nm TLSv1_server_method ,
+.Nm TLSv1_client_method ,
+.Nm TLSv1_1_method ,
+.Nm TLSv1_1_server_method ,
+.Nm TLSv1_1_client_method ,
+.Nm SSLv23_method ,
+.Nm SSLv23_server_method ,
+.Nm SSLv23_client_method
 .Nd create a new SSL_CTX object as framework for TLS/SSL enabled functions
 .Sh SYNOPSIS
 .In openssl/ssl.h
@@ -24,13 +36,6 @@ a server only type, and a client only type.
 .Fa method
 can be of the following types:
 .Bl -tag -width Ds
-.It Fn SSLv2_method void , Fn SSLv2_server_method void , \
-Fn SSLv2_client_method void
-A TLS/SSL connection established with these methods will only understand
-the SSLv2 protocol.
-A client will send out SSLv2 client hello messages and will also indicate that
-it only understand SSLv2.
-A server will only understand SSLv2 client hello messages.
 .It Fn SSLv3_method void , Fn SSLv3_server_method void , \
 Fn SSLv3_client_method void
 A TLS/SSL connection established with these methods will only understand the
@@ -54,19 +59,22 @@ which are widely used for compatibility reasons; see
 It will also not understand SSLv3 client hello messages.
 .It Fn SSLv23_method void , Fn SSLv23_server_method void , \
 Fn SSLv23_client_method void
-A TLS/SSL connection established with these methods will understand the SSLv2,
-SSLv3, and TLSv1 protocols.
-A client will send out SSLv2 client hello messages and will indicate that it
-also understands SSLv3 and TLSv1.
-A server will understand SSLv2, SSLv3, and TLSv1 client hello messages.
+A TLS/SSL connection established with these methods may understand the SSLv3,
+TLSv1, TLSv1.1 and TLSv1.2 protocols.
+.Pp
+A client will send out TLSv1 client hello messages including extensions and
+will indicate that it also understands TLSv1.1, TLSv1.2 and permits a fallback
+to SSLv3.
+A server will support SSLv3, TLSv1, TLSv1.1 and TLSv1.2 protocols.
 This is the best choice when compatibility is a concern.
 .El
 .Pp
 The list of protocols available can later be limited using the
-.Dv SSL_OP_NO_SSLv2 ,
 .Dv SSL_OP_NO_SSLv3 ,
-or
-.Dv SSL_OP_NO_TLSv1
+.Dv SSL_OP_NO_TLSv1 ,
+.Dv SSL_OP_NO_TLSv1_1 ,
+and
+.Dv SSL_OP_NO_TLSv1_2
 options of the
 .Fn SSL_CTX_set_options
 or
@@ -75,7 +83,7 @@ functions.
 Using these options it is possible to choose, for example,
 .Fn SSLv23_server_method
 and be able to negotiate with all possible clients,
-but to only allow newer protocols like SSLv3 or TLSv1.
+but to only allow newer protocols like TLSv1, TLSv1.1 or TLS v1.2.
 .Pp
 .Fn SSL_CTX_new
 initializes the list of ciphers, the session cache setting, the callbacks,

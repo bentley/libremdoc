@@ -18,13 +18,11 @@
 .Fn SSL_CTX_set_tmp_dh "SSL_CTX *ctx" "DH *dh"
 .Ft void
 .Fo SSL_set_tmp_dh_callback
-.Fa "SSL_CTX *ctx"
+.Fa "SSL *ssl"
 .Fa "DH *(*tmp_dh_callback)(SSL *ssl, int is_export, int keylength"
 .Fc
 .Ft long
 .Fn SSL_set_tmp_dh "SSL *ssl" "DH *dh"
-.Ft DH *
-.Fn "(*tmp_dh_callback)" "SSL *ssl" "int is_export" "int keylength"
 .Sh DESCRIPTION
 .Fn SSL_CTX_set_tmp_dh_callback
 sets the callback function for
@@ -124,7 +122,7 @@ Files
 .Pa dh1024.pem ,
 .Pa dh2048.pem ,
 and
-.Pa dh4096
+.Pa dh4096.pem
 in the
 .Pa apps
 directory of the current version of the OpenSSL distribution contain the

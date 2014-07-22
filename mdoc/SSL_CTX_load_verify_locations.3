@@ -55,9 +55,6 @@ the extension must be different (e.g.\&
 etc.).
 The search is performed in the ordering of the extension number,
 regardless of other properties of the certificates.
-Use the
-.Xr c_rehash 1
-utility to create the necessary links.
 .Pp
 The certificates in
 .Fa CApath
@@ -121,9 +118,24 @@ Prepare the directory /some/where/certs containing several CA certificates
 for use as
 .Fa CApath :
 .Pp
-.Dl $ cd /some/where/certs
-.Pp
-.Dl $ c_rehash .\&
+.Bd -literal
+$ cd /some/where/certs
+$ rm -f *.[0-9]* *.r[0-9]*
+$ for c in *.pem; do
+>    [ "$c" = "*.pem" ] && continue
+>    hash=$(openssl x509 -noout -hash -in "$c")
+>    if egrep -q -- '-BEGIN( X509 | TRUSTED | )CERTIFICATE-' "$c"; then
+>      suf=0
+>      while [ -e $hash.$suf ]; do suf=$(( $suf + 1 )); done
+>      ln -s "$c" $hash.$suf
+>    fi
+>    if egrep -q -- '-BEGIN X509 CRL-' "$c"; then
+>      suf=0
+>      while [ -e $hash.r$suf ]; do suf=$(( $suf + 1 )); done
+>      ln -s "$c" $hash.r$suf
+>    fi
+> done
+.Ed
 .Sh RETURN VALUES
 The following return values can occur:
 .Bl -tag -width Ds
