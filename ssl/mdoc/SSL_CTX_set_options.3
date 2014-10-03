@@ -128,6 +128,10 @@ Disables a countermeasure against a SSL 3.0/TLS 1.0 protocol vulnerability
 affecting CBC ciphers, which cannot be handled by some broken SSL
 implementations.
 This option has no effect for connections using other ciphers.
+.It Dv SSL_OP_TLSEXT_PADDING
+Adds a padding extension to ensure the ClientHello size is never between 256
+and 511 bytes in length. This is needed as a workaround for some
+implementations.
 .It Dv SSL_OP_ALL
 All of the above bug workarounds.
 .El

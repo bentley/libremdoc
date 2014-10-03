@@ -8,6 +8,7 @@
 .Nm SSL_use_certificate ,
 .Nm SSL_use_certificate_ASN1 ,
 .Nm SSL_use_certificate_file ,
+.Nm SSL_CTX_use_certificate_chain ,
 .Nm SSL_CTX_use_certificate_chain_file ,
 .Nm SSL_CTX_use_PrivateKey ,
 .Nm SSL_CTX_use_PrivateKey_ASN1 ,
@@ -38,6 +39,8 @@
 .Fn SSL_use_certificate_ASN1 "SSL *ssl" "unsigned char *d" "int len"
 .Ft int
 .Fn SSL_use_certificate_file "SSL *ssl" "const char *file" "int type"
+.Ft int
+.Fn SSL_CTX_use_certificate_chain "SSL_CTX *ctx" "void *buf" "int len"
 .Ft int
 .Fn SSL_CTX_use_certificate_chain_file "SSL_CTX *ctx" "const char *file"
 .Ft int
@@ -156,10 +159,9 @@ section on why
 .Fn SSL_CTX_use_certificate_chain_file
 should be preferred.
 .Pp
-.Fn SSL_CTX_use_certificate_chain_file
-loads a certificate chain from
-.Fa file
-into
+The
+.Fn SSL_CTX_use_certificate_chain*
+functions load a certificate chain into
 .Fa ctx .
 The certificates must be in PEM format and must be sorted starting with the
 subject's certificate (actual client or server certificate),
