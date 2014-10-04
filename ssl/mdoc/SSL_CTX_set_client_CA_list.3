@@ -19,34 +19,34 @@
 .Fn SSL_add_client_CA "SSL *ssl" "X509 *cacert"
 .Sh DESCRIPTION
 .Fn SSL_CTX_set_client_CA_list
-sets the 
+sets the
 .Fa list
-of CAs sent to the client when requesting a client certificate for 
+of CAs sent to the client when requesting a client certificate for
 .Fa ctx .
 .Pp
 .Fn SSL_set_client_CA_list
-sets the 
+sets the
 .Fa list
-of CAs sent to the client when requesting a client certificate for the chosen 
+of CAs sent to the client when requesting a client certificate for the chosen
 .Fa ssl ,
-overriding the setting valid for 
+overriding the setting valid for
 .Fa ssl Ns 's
 .Vt SSL_CTX
 object.
 .Pp
 .Fn SSL_CTX_add_client_CA
-adds the CA name extracted from 
+adds the CA name extracted from
 .Fa cacert
 to the list of CAs sent to the client when requesting a client certificate for
 .Fa ctx .
 .Pp
 .Fn SSL_add_client_CA
-adds the CA name extracted from 
+adds the CA name extracted from
 .Fa cacert
 to the list of CAs sent to the client when requesting a client certificate for
-the chosen 
+the chosen
 .Fa ssl ,
-overriding the setting valid for 
+overriding the setting valid for
 .Fa ssl Ns 's
 .Va SSL_CTX
 object.
@@ -61,10 +61,10 @@ for
 .Fa ctx
 and
 .Fn SSL_set_client_CA_list
-for the specific 
+for the specific
 .Fa ssl .
 The list specified overrides the previous setting.
-The CAs listed do not become trusted 
+The CAs listed do not become trusted
 .Po
 .Fa list
 only contains the names, not the complete certificates
@@ -85,9 +85,9 @@ If no list was specified before using
 .Fn SSL_CTX_set_client_CA_list
 or
 .Fn SSL_set_client_CA_list ,
-a new client CA list for 
+a new client CA list for
 .Fa ctx
-or 
+or
 .Fa ssl
 (as appropriate) is opened.
 .Pp
@@ -109,14 +109,14 @@ A failure while manipulating the
 .Pq Vt X509_NAME
 object occurred or the
 .Vt X509_NAME
-could not be extracted from 
+could not be extracted from
 .Fa cacert .
 Check the error stack to find out the reason.
 .It 1
 The operation succeeded.
 .El
 .Sh EXAMPLES
-Scan all certificates in 
+Scan all certificates in
 .Fa CAfile
 and list them as acceptable CAs:
 .Bd -literal
