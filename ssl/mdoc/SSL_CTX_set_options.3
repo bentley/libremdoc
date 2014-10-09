@@ -163,7 +163,7 @@ Always create a new key when using temporary/ephemeral DH parameters
 This option must be used to prevent small subgroup attacks, when the DH
 parameters were not generated using
 .Dq strong
-primes (e.g. when using DSA-parameters, see
+primes (e.g., when using DSA-parameters, see
 .Xr dhparam 1 ) .
 If
 .Dq strong
@@ -295,7 +295,7 @@ fail.
 The option
 .Dv SSL_OP_LEGACY_SERVER_CONNECT
 is currently set by default even though it has security implications:
-otherwise it would be impossible to connect to unpatched servers (i.e. all of
+otherwise it would be impossible to connect to unpatched servers (i.e., all of
 them initially) and this is clearly not acceptable.
 Renegotiation is permitted because this does not add any additional security
 issues: during an attack clients do not see any renegotiations anyway.

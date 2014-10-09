@@ -88,10 +88,10 @@ and the allocation fails, a pointer to the string
 is returned.
 .Sh NOTES
 The number of bits processed can be different from the secret bits.
-An export cipher like e.g. EXP-RC4-MD5 has only 40 secret bits.
+For example, an export cipher like EXP-RC4-MD5 has only 40 secret bits.
 The algorithm does use the full 128 bits (which would be returned for
 .Fa alg_bits ) ,
-of which however 88bits are fixed.
+but 88 bits are fixed.
 The search space is hence only 40 bits.
 .Pp
 The string returned by

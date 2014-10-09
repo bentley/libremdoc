@@ -68,7 +68,7 @@ Only when the record has been received and processed completely will
 return reporting success.
 At most the contents of the record will be returned.
 As the size of an SSL/TLS record may exceed the maximum packet size of the
-underlying transport (e.g. TCP), it may be necessary to read several packets
+underlying transport (e.g., TCP), it may be necessary to read several packets
 from the transport layer before the record is complete and
 .Fn SSL_read
 can succeed.

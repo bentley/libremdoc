@@ -52,7 +52,7 @@ This result code is returned if and only if
 .It Dv SSL_ERROR_ZERO_RETURN
 The TLS/SSL connection has been closed.
 If the protocol version is SSL 3.0 or TLS 1.0, this result code is returned
-only if a closure alert has occurred in the protocol, i.e. if the connection
+only if a closure alert has occurred in the protocol, i.e., if the connection
 has been closed cleanly.
 Note that in this case
 .Dv SSL_ERROR_ZERO_RETURN
@@ -67,7 +67,7 @@ has data available for reading (if the result code is
 or allows writing data
 .Pq Dv SSL_ERROR_WANT_WRITE ,
 then some TLS/SSL protocol progress will take place,
-i.e. at least part of an TLS/SSL record will be read or written.
+i.e., at least part of an TLS/SSL record will be read or written.
 Note that the retry may again lead to a
 .Dv SSL_ERROR_WANT_READ
 or
@@ -78,7 +78,7 @@ necessary until progress becomes visible at application protocol level.
 .Pp
 For socket
 .Fa BIO Ns
-s (e.g. when
+s (e.g., when
 .Fn SSL_set_fd
 was used),
 .Xr select 2
@@ -136,7 +136,7 @@ Details depend on the application.
 .It Dv SSL_ERROR_SYSCALL
 Some I/O error occurred.
 The OpenSSL error queue may contain more information on the error.
-If the error queue is empty (i.e.\&
+If the error queue is empty (i.e.,
 .Fn ERR_get_error
 returns 0),
 .Fa ret

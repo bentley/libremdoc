@@ -44,7 +44,7 @@ When exporting/importing sessions with
 and
 .Xr d2i_SSL_SESSION 3 ,
 it would be possible to re-import a session generated from another context
-(e.g. another application), which might lead to malfunctions.
+(e.g., another application), which might lead to malfunctions.
 Therefore each application must set its own session id context
 .Fa sid_ctx
 which is used to distinguish the contexts and is stored in exported sessions.
