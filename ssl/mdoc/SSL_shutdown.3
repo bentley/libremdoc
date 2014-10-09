@@ -56,7 +56,15 @@ If a unidirectional shutdown is enough
 is sufficient.
 In order to complete the bidirectional shutdown handshake,
 .Fn SSL_shutdown
-must be called again. The second call will make SSL_shutdown() wait for the peer's "close notify" shutdown alert. \&On success, the second call to SSL_shutdown() will return with 1.
+must be called again.
+The second call will make
+.Fn SSL_shutdown
+wait for the peer's
+.Dq close notify
+shutdown alert.
+On success, the second call to
+.Fn SSL_shutdown
+will return 1.
 .Pp
 If the peer already sent the
 .Dq close notify
