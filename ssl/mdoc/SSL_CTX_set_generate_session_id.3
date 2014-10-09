@@ -134,6 +134,14 @@ a 0x00 padded id.
 .Pp
 The callback must return 0 if it cannot generate a session id for whatever
 reason and return 1 on success.
+.Sh RETURN VALUES
+.Fn SSL_CTX_set_generate_session_id
+and
+.Fn SSL_set_generate_session_id
+always return 1.
+.Pp
+.Fn SSL_has_matching_session_id
+returns 1 if another session with the same id is already in the cache.
 .Sh EXAMPLES
 The callback function listed will generate a session id with the server id
 given, and will fill the rest with pseudo random bytes:
@@ -169,14 +177,6 @@ given, and will fill the rest with pseudo random bytes:
       return 1;
       }
 .Ed
-.Sh RETURN VALUES
-.Fn SSL_CTX_set_generate_session_id
-and
-.Fn SSL_set_generate_session_id
-always return 1.
-.Pp
-.Fn SSL_has_matching_session_id
-returns 1 if another session with the same id is already in the cache.
 .Sh SEE ALSO
 .Xr ssl 3 ,
 .Xr SSL_get_version 3

@@ -253,25 +253,6 @@ failure will lead to a termination of the TLS/SSL handshake with an
 alert message, if
 .Dv SSL_VERIFY_PEER
 is set.
-.Sh BUGS
-In client mode, it is not checked whether the
-.Dv SSL_VERIFY_PEER
-flag is set, but whether
-.Dv SSL_VERIFY_NONE
-is not set.
-This can lead to unexpected behaviour, if the
-.Dv SSL_VERIFY_PEER
-and
-.Dv SSL_VERIFY_NONE
-are not used as required (exactly one must be set at any time).
-.Pp
-The certificate verification depth set with
-.Fn SSL[_CTX]_verify_depth
-stops the verification at a certain depth.
-The error message produced will be that of an incomplete certificate chain and
-not
-.Dv X509_V_ERR_CERT_CHAIN_TOO_LONG
-as may be expected.
 .Sh RETURN VALUES
 The
 .Fn SSL*_set_verify*
@@ -406,3 +387,22 @@ structure (see
 .Xr SSL_CTX_get_verify_mode 3 ,
 .Xr SSL_CTX_load_verify_locations 3 ,
 .Xr SSL_CTX_set_cert_verify_callback 3
+.Sh BUGS
+In client mode, it is not checked whether the
+.Dv SSL_VERIFY_PEER
+flag is set, but whether
+.Dv SSL_VERIFY_NONE
+is not set.
+This can lead to unexpected behaviour, if the
+.Dv SSL_VERIFY_PEER
+and
+.Dv SSL_VERIFY_NONE
+are not used as required (exactly one must be set at any time).
+.Pp
+The certificate verification depth set with
+.Fn SSL[_CTX]_verify_depth
+stops the verification at a certain depth.
+The error message produced will be that of an incomplete certificate chain and
+not
+.Dv X509_V_ERR_CERT_CHAIN_TOO_LONG
+as may be expected.

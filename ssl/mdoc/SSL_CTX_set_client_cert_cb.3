@@ -94,6 +94,13 @@ It will not be reset by calling
 .Xr SSL_clear 3 .
 If the callback returns no certificate, the OpenSSL library will not send a
 certificate.
+.Sh SEE ALSO
+.Xr ssl 3 ,
+.Xr SSL_clear 3 ,
+.Xr SSL_free 3 ,
+.Xr SSL_get_client_CA_list 3 ,
+.Xr SSL_CTX_add_extra_chain_cert 3 ,
+.Xr SSL_CTX_use_certificate 3
 .Sh BUGS
 The
 .Fa client_cert_cb()
@@ -131,10 +138,3 @@ to destroy the
 object using
 .Xr SSL_free 3
 and create a new one to return to the previous state.
-.Sh SEE ALSO
-.Xr ssl 3 ,
-.Xr SSL_clear 3 ,
-.Xr SSL_free 3 ,
-.Xr SSL_get_client_CA_list 3 ,
-.Xr SSL_CTX_add_extra_chain_cert 3 ,
-.Xr SSL_CTX_use_certificate 3

@@ -154,6 +154,17 @@ information. The
 .Fa is_export
 flag is set when the ephemeral DH key exchange is performed with an export
 cipher.
+.Sh RETURN VALUES
+.Fn SSL_CTX_set_tmp_dh_callback
+and
+.Fn SSL_set_tmp_dh_callback
+do not return diagnostic output.
+.Pp
+.Fn SSL_CTX_set_tmp_dh
+and
+.Fn SSL_set_tmp_dh
+do return 1 on success and 0 on failure.
+Check the error queue to find out the reason of failure.
 .Sh EXAMPLES
 Handle DH parameters for key lengths of 512 and 1024 bits.
 (Error handling partly left out.)
@@ -205,17 +216,6 @@ Handle DH parameters for key lengths of 512 and 1024 bits.
     return(dh_tmp);
  }
 .Ed
-.Sh RETURN VALUES
-.Fn SSL_CTX_set_tmp_dh_callback
-and
-.Fn SSL_set_tmp_dh_callback
-do not return diagnostic output.
-.Pp
-.Fn SSL_CTX_set_tmp_dh
-and
-.Fn SSL_set_tmp_dh
-do return 1 on success and 0 on failure.
-Check the error queue to find out the reason of failure.
 .Sh SEE ALSO
 .Xr ciphers 1 ,
 .Xr dhparam 1 ,

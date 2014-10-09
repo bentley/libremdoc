@@ -24,6 +24,14 @@ of the certificates found.
 While the name suggests the specific usage as support function for
 .Xr SSL_CTX_set_client_CA_list 3 ,
 it is not limited to CA certificates.
+.Sh RETURN VALUES
+The following return values can occur:
+.Bl -tag -width Ds
+.It Dv NULL
+The operation failed, check out the error stack for the reason.
+.It Pointer to Dv STACK_OF Ns Po Vt X509_NAME Pc
+Pointer to the subject names of the successfully read certificates.
+.El
 .Sh EXAMPLES
 Load names of CAs from file and use it as a client CA list:
 .Bd -literal
@@ -37,14 +45,6 @@ Load names of CAs from file and use it as a client CA list:
    error_handling();
  ...
 .Ed
-.Sh RETURN VALUES
-The following return values can occur:
-.Bl -tag -width Ds
-.It Dv NULL
-The operation failed, check out the error stack for the reason.
-.It Pointer to Dv STACK_OF Ns Po Vt X509_NAME Pc
-Pointer to the subject names of the successfully read certificates.
-.El
 .Sh SEE ALSO
 .Xr ssl 3 ,
 .Xr SSL_CTX_set_client_CA_list 3

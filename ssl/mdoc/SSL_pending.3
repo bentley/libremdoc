@@ -21,6 +21,9 @@ and are ready for immediate retrieval with
 .Xr SSL_read 3 .
 .Sh RETURN VALUES
 The number of bytes pending is returned.
+.Sh SEE ALSO
+.Xr ssl 3 ,
+.Xr SSL_read 3
 .Sh BUGS
 .Fn SSL_pending
 takes into account only bytes from the TLS/SSL record that is currently being
@@ -36,6 +39,3 @@ TLS/SSL records; these are ignored by
 Up to OpenSSL 0.9.6,
 .Fn SSL_pending
 does not check if the record type of pending data is application data.
-.Sh SEE ALSO
-.Xr ssl 3 ,
-.Xr SSL_read 3

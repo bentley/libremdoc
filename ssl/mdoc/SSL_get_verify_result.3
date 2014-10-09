@@ -22,14 +22,6 @@ available from
 .Pp
 The verification result is part of the established session and is restored when
 a session is reused.
-.Sh BUGS
-If no peer certificate was presented, the returned result code is
-.Dv X509_V_OK .
-This is because no verification error occurred;
-however, it does not indicate success.
-.Fn SSL_get_verify_result
-is only useful in connection with
-.Xr SSL_get_peer_certificate 3 .
 .Sh RETURN VALUES
 The following return values can currently occur:
 .Bl -tag -width Ds
@@ -44,3 +36,11 @@ Documented in
 .Xr ssl 3 ,
 .Xr SSL_get_peer_certificate 3 ,
 .Xr SSL_set_verify_result 3
+.Sh BUGS
+If no peer certificate was presented, the returned result code is
+.Dv X509_V_OK .
+This is because no verification error occurred;
+however, it does not indicate success.
+.Fn SSL_get_verify_result
+is only useful in connection with
+.Xr SSL_get_peer_certificate 3 .

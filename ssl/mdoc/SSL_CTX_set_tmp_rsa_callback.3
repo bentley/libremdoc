@@ -141,6 +141,22 @@ The
 .Fa is_export
 flag is set when the ephemeral RSA key exchange is performed with an export
 cipher.
+.Sh RETURN VALUES
+.Fn SSL_CTX_set_tmp_rsa_callback
+and
+.Fn SSL_set_tmp_rsa_callback
+do not return diagnostic output.
+.Pp
+.Fn SSL_CTX_set_tmp_rsa
+and
+.Fn SSL_set_tmp_rsa
+return 1 on success and 0 on failure.
+Check the error queue to find out the reason of failure.
+.Pp
+.Fn SSL_CTX_need_tmp_rsa
+and
+.Fn SSL_need_tmp_rsa
+return 1 if a temporary RSA key is needed and 0 otherwise.
 .Sh EXAMPLES
 Generate temporary RSA keys to prepare ephemeral RSA key exchange.
 As the generation of a RSA key costs a lot of computer time,
@@ -192,22 +208,6 @@ respectively are generated.
     return(rsa_tmp);
  }
 .Ed
-.Sh RETURN VALUES
-.Fn SSL_CTX_set_tmp_rsa_callback
-and
-.Fn SSL_set_tmp_rsa_callback
-do not return diagnostic output.
-.Pp
-.Fn SSL_CTX_set_tmp_rsa
-and
-.Fn SSL_set_tmp_rsa
-return 1 on success and 0 on failure.
-Check the error queue to find out the reason of failure.
-.Pp
-.Fn SSL_CTX_need_tmp_rsa
-and
-.Fn SSL_need_tmp_rsa
-return 1 if a temporary RSA key is needed and 0 otherwise.
 .Sh SEE ALSO
 .Xr ciphers 1 ,
 .Xr ssl 3 ,

@@ -157,6 +157,9 @@ regulations, the word
 .Dq export
 is printed.
 .El
+.Sh RETURN VALUES
+See
+.Sx DESCRIPTION
 .Sh EXAMPLES
 Some examples for the output of
 .Fn SSL_CIPHER_description :
@@ -168,6 +171,11 @@ Some examples for the output of
 A complete list can be retrieved by invoking the following command:
 .Pp
 .Dl $ openssl ciphers -v ALL
+.Sh SEE ALSO
+.Xr ciphers 1 ,
+.Xr ssl 3 ,
+.Xr SSL_get_ciphers 3
+.Xr SSL_get_current_cipher 3 ,
 .Sh BUGS
 If
 .Fn SSL_CIPHER_description
@@ -183,11 +191,3 @@ cannot handle a built-in cipher,
 the according description of the cipher property is
 .Qq unknown .
 This case should not occur.
-.Sh RETURN VALUES
-See
-.Sx DESCRIPTION
-.Sh SEE ALSO
-.Xr ciphers 1 ,
-.Xr ssl 3 ,
-.Xr SSL_get_ciphers 3
-.Xr SSL_get_current_cipher 3 ,

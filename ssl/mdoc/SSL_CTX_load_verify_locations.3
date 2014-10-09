@@ -101,6 +101,21 @@ If a
 .Dq certificate expired
 verification error occurs, no other certificate will be searched.
 Make sure to not have expired certificates mixed with valid ones.
+.Sh RETURN VALUES
+The following return values can occur:
+.Bl -tag -width Ds
+.It 0
+The operation failed because
+.Fa CAfile
+and
+.Fa CApath
+are
+.Dv NULL
+or the processing at one of the locations specified failed.
+Check the error stack to find out the reason.
+.It 1
+The operation succeeded.
+.El
 .Sh EXAMPLES
 Generate a CA certificate file with descriptive text from the CA certificates
 .Pa ca1.pem
@@ -135,21 +150,6 @@ $ for c in *.pem; do
 >    fi
 > done
 .Ed
-.Sh RETURN VALUES
-The following return values can occur:
-.Bl -tag -width Ds
-.It 0
-The operation failed because
-.Fa CAfile
-and
-.Fa CApath
-are
-.Dv NULL
-or the processing at one of the locations specified failed.
-Check the error stack to find out the reason.
-.It 1
-The operation succeeded.
-.El
 .Sh SEE ALSO
 .Xr ssl 3 ,
 .Xr SSL_get_client_CA_list 3 ,
