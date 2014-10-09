@@ -49,11 +49,11 @@ An error occurred, check the error stack for a detailed error message.
 .Sh EXAMPLES
 The index returned from
 .Fn SSL_get_ex_data_X509_STORE_CTX_idx
-allows to access the
+provides access to
 .Vt SSL
-object for the connection to be accessed during the
+object for the connection during the
 .Fn verify_callback
-when checking the peers certificate.
+when checking the peer's certificate.
 Please check the example in
 .Xr SSL_CTX_set_verify 3 .
 .Sh SEE ALSO
