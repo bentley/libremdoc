@@ -170,52 +170,59 @@ Check the error queue to find out the reason of failure.
 Handle DH parameters for key lengths of 512 and 1024 bits.
 (Error handling partly left out.)
 .Bd -literal
- ...
- /* Set up ephemeral DH stuff */
- DH *dh_512 = NULL;
- DH *dh_1024 = NULL;
- FILE *paramfile;
+...
+/* Set up ephemeral DH stuff */
+DH *dh_512 = NULL;
+DH *dh_1024 = NULL;
+FILE *paramfile;
 
- ...
- /* "openssl dhparam -out dh_param_512.pem -2 512" */
- paramfile = fopen("dh_param_512.pem", "r");
- if (paramfile) {
-   dh_512 = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
-   fclose(paramfile);
- }
- /* "openssl dhparam -out dh_param_1024.pem -2 1024" */
- paramfile = fopen("dh_param_1024.pem", "r");
- if (paramfile) {
-   dh_1024 = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
-   fclose(paramfile);
- }
- ...
+...
 
- /* "openssl dhparam -C -2 512" etc... */
- DH *get_dh512() { ... }
- DH *get_dh1024() { ... }
+/* "openssl dhparam -out dh_param_512.pem -2 512" */
+paramfile = fopen("dh_param_512.pem", "r");
+if (paramfile) {
+	dh_512 = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+	fclose(paramfile);
+}
+/* "openssl dhparam -out dh_param_1024.pem -2 1024" */
+paramfile = fopen("dh_param_1024.pem", "r");
+if (paramfile) {
+	dh_1024 = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+	fclose(paramfile);
+}
 
- DH *tmp_dh_callback(SSL *s, int is_export, int keylength)
- {
-    DH *dh_tmp=NULL;
+...
 
-    switch (keylength) {
-    case 512:
-      if (!dh_512)
-        dh_512 = get_dh512();
-      dh_tmp = dh_512;
-      break;
-    case 1024:
-      if (!dh_1024)
-        dh_1024 = get_dh1024();
-      dh_tmp = dh_1024;
-      break;
-    default:
-      /* Generating a key on the fly is very costly, so use what is there */
-      setup_dh_parameters_like_above();
-    }
-    return(dh_tmp);
- }
+/* "openssl dhparam -C -2 512" etc... */
+DH *get_dh512() { ... }
+DH *get_dh1024() { ... }
+
+DH *
+tmp_dh_callback(SSL *s, int is_export, int keylength)
+{
+	DH *dh_tmp=NULL;
+
+	switch (keylength) {
+	case 512:
+		if (!dh_512)
+			dh_512 = get_dh512();
+		dh_tmp = dh_512;
+		break;
+	case 1024:
+		if (!dh_1024)
+			dh_1024 = get_dh1024();
+		dh_tmp = dh_1024;
+		break;
+	default:
+		/*
+		 * Generating a key on the fly is very costly,
+		 * so use what is there
+		 */
+		setup_dh_parameters_like_above();
+	}
+
+	return(dh_tmp);
+}
 .Ed
 .Sh SEE ALSO
 .Xr ciphers 1 ,

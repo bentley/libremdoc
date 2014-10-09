@@ -121,11 +121,11 @@ Generate a CA certificate file with descriptive text from the CA certificates
 .Pa ca2.pem
 .Pa ca3.pem :
 .Bd -literal
- #!/bin/sh
- rm CAfile.pem
- for i in ca1.pem ca2.pem ca3.pem ; do
-   openssl x509 -in $i -text >> CAfile.pem
- done
+#!/bin/sh
+rm CAfile.pem
+for i in ca1.pem ca2.pem ca3.pem; do
+	openssl x509 -in $i -text >> CAfile.pem
+done
 .Ed
 .Pp
 Prepare the directory /some/where/certs containing several CA certificates

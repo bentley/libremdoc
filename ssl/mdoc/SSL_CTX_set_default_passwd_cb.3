@@ -80,12 +80,12 @@ The password is considered to be a
 terminated string.
 If the password does not fit into the buffer, the password is truncated.
 .Bd -literal
- int pem_passwd_cb(char *buf, int size, int rwflag, void *password)
- {
-  strncpy(buf, (char *)(password), size);
-  buf[size - 1] = '\e0';
-  return(strlen(buf));
- }
+int pem_passwd_cb(char *buf, int size, int rwflag, void *password)
+{
+	strncpy(buf, (char *)password, size);
+	buf[size - 1] = '\e0';
+	return strlen(buf);
+}
 .Ed
 .Sh SEE ALSO
 .Xr ssl 3 ,

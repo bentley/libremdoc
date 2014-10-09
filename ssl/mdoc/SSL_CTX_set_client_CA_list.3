@@ -120,7 +120,7 @@ Scan all certificates in
 .Fa CAfile
 and list them as acceptable CAs:
 .Bd -literal
-  SSL_CTX_set_client_CA_list(ctx,SSL_load_client_CA_file(CAfile));
+SSL_CTX_set_client_CA_list(ctx, SSL_load_client_CA_file(CAfile));
 .Ed
 .Sh SEE ALSO
 .Xr ssl 3 ,
