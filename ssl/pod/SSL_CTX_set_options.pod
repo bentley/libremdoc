@@ -84,11 +84,11 @@ As of OpenSSL 0.9.8q and 1.0.0c, this option has no effect.
 
 =item SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG
 
-...
+\&...
 
 =item SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER
 
-...
+\&...
 
 =item SSL_OP_SAFARI_ECDHE_ECDSA_BUG
 
@@ -97,15 +97,15 @@ OS X 10.8..10.8.3 has broken support for ECDHE-ECDSA ciphers.
 
 =item SSL_OP_SSLEAY_080_CLIENT_DH_BUG
 
-...
+\&...
 
 =item SSL_OP_TLS_D5_BUG
 
-...
+\&...
 
 =item SSL_OP_TLS_BLOCK_PADDING_BUG
 
-...
+\&...
 
 =item SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS
 
@@ -186,7 +186,7 @@ browser has a cert, it will crash/hang.  Works for 3.x and 4.xbeta
 
 =item SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG
 
-...
+\&...
 
 =item SSL_OP_NO_SSLv2
 

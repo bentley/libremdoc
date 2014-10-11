@@ -164,7 +164,7 @@ they are saved for later reuse.
 For demonstration purposes, two keys for 512 bits and 1024 bits
 respectively are generated.
 .Bd -literal
-...
+\&...
 
 /* Set up ephemeral RSA stuff */
 RSA *rsa_512 = NULL;
@@ -178,7 +178,7 @@ rsa_1024 = RSA_generate_key(1024, RSA_F4, NULL, NULL);
 if (rsa_1024 == NULL)
 	evaluate_error_queue();
 
-...
+\&...
 
 RSA *
 tmp_rsa_callback(SSL *s, int is_export, int keylength)

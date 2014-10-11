@@ -276,7 +276,7 @@ structure (see
 .Xr SSL_get_ex_new_index 3 ,
 .Xr SSL_get_ex_data_X509_STORE_CTX_idx 3 ) .
 .Bd -literal
-...
+\&...
 
 typedef struct {
 	int	verbose_mode;
@@ -284,7 +284,7 @@ typedef struct {
 	int	always_continue;
 } mydata_t;
 int mydata_index;
-...
+\&...
 static int
 verify_callback(int preverify_ok, X509_STORE_CTX *ctx)
 {
@@ -346,15 +346,15 @@ verify_callback(int preverify_ok, X509_STORE_CTX *ctx)
 	else
 		return preverify_ok;
 }
-...
+\&...
 
 mydata_t mydata;
 
-...
+\&...
 
 mydata_index = SSL_get_ex_new_index(0, "mydata index", NULL, NULL, NULL);
 
-...
+\&...
 
 SSL_CTX_set_verify(ctx, SSL_VERIFY_PEER|SSL_VERIFY_CLIENT_ONCE,
     verify_callback);
@@ -372,7 +372,7 @@ SSL_CTX_set_verify_depth(verify_depth + 1);
 mydata.verify_depth = verify_depth; ...
 SSL_set_ex_data(ssl, mydata_index, &mydata);
 
-...
+\&...
 
 SSL_accept(ssl); /* check of success left out for clarity */
 if (peer = SSL_get_peer_certificate(ssl)) {
